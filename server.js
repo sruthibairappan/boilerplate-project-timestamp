@@ -32,12 +32,21 @@ app.get('/api/timestamp/:date',function(req,res){
 	else{
 		date=new Date(req.params.date)
 	}
-res.json({
+	
+	if(!date.getTime()){
+	res.json({"error" : "Invalid Date" })
+	
+	}
+	else{
+		res.json({
 	"unix":date.getTime(),
 	"utc":date.toUTCString()
 	
 })	
+	}
+
 })
+
 
 
 
